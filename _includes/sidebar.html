@@ -1,5 +1,3 @@
-<h1 class="wiki-logo">KeystoneWiki</h1>
-<nav class="category-tree">
 {% for file in site.data %}
   {% assign key = file[0] %}
   {% assign cat = file[1] %}
@@ -7,18 +5,24 @@
   {% if key == "_meta" or cat.category == nil %}
     {% continue %}
   {% endif %}
-  <details class="category" open>
-    <summary>{{ cat.category }}</summary>
-    <ul>
-    {% for sub in cat.subcategories %}
-      {% assign count = sub[1].size %}
-      <li>
-        <a href="#" class="sub-link" data-cat="{{ key }}" data-sub="{{ sub[0] }}">
-          {{ sub[0] }} <span class="count">{{ count }}</span>
-        </a>
-      </li>
-    {% endfor %}
-    </ul>
-  </details>
+  {% assign meta_icon = site.data._meta.order[key].icon | default: "fa-folder" %}
+  {% assign cat_total = 0 %}
+  {% for sub in cat.subcategories %}
+    {% assign cat_total = cat_total | plus: sub[1].size %}
+  {% endfor %}
+  <div class="nav-group">
+    <div class="nav-cat-label">
+      <i class="fa-solid {{ meta_icon }}"></i>
+      <span>{{ cat.category }}</span>
+      <span class="count-badge cat-count">{{ cat_total }}</span>
+    </div>
+    <div class="nav-items">
+      {% for sub in cat.subcategories %}
+        <div class="nav-item" data-cat="{{ key }}" data-sub="{{ sub[0] }}">
+          <span class="nav-item-left"><i class="fa-solid fa-angle-right nav-icon"></i><span>{{ sub[0] }}</span></span>
+          <span class="count-badge">{{ sub[1].size }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 {% endfor %}
-</nav>

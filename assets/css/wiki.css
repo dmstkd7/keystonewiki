@@ -1,72 +1,183 @@
-* { box-sizing: border-box; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  margin: 0;
-  font-family: -apple-system, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
-  color: #222;
-  background: #fafafa;
+  font-family: 'Plus Jakarta Sans', -apple-system, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+  height: 100vh;
+  overflow: hidden;
 }
-.site-header {
-  padding: 14px 20px;
-  border-bottom: 1px solid #e2e2e2;
-  background: #fff;
+
+.portal-wrapper { display: flex; width: 100vw; height: 100vh; }
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  width: 320px;
+  background-color: #0f172a;
+  color: #ffffff;
   display: flex;
-  align-items: baseline;
+  flex-direction: column;
+  border-right: 1px solid #1e293b;
+  flex-shrink: 0;
+  z-index: 10;
+}
+.sidebar-header { padding: 30px 24px 20px 24px; border-bottom: 1px solid #1e293b; }
+.brand-badge {
+  display: inline-block;
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  margin-bottom: 12px;
+}
+.sidebar-header h1 { font-family: 'Merriweather', serif; font-size: 21px; font-weight: 700; color: #ffffff; line-height: 1.3; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 6px; }
+
+.sidebar-nav { flex: 1; padding: 20px 16px; overflow-y: auto; }
+
+.nav-group { margin-bottom: 18px; }
+.nav-cat-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.5px;
+  padding: 0 8px 10px 8px;
+  text-transform: uppercase;
+}
+.nav-cat-label span:not(.count-badge) { flex: 1; color: #cbd5e1; }
+.nav-cat-label .fa-solid { width: 16px; text-align: center; color: #475569; }
+.nav-cat-label .cat-count { background-color: transparent; color: #64748b; font-size: 11px; }
+
+.nav-items { display: flex; flex-direction: column; gap: 4px; }
+.nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px;
+  border-radius: 10px;
+  color: #94a3b8;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+.nav-item:hover { background-color: #1e293b; color: #ffffff; }
+.nav-item.active {
+  background-color: #1e293b;
+  color: #ffffff;
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.nav-item-left { display: flex; align-items: center; gap: 10px; }
+.nav-item .nav-icon { font-size: 11px; color: #475569; }
+.nav-item.active .nav-icon { color: #38bdf8; }
+
+.count-badge {
+  background-color: #334155;
+  color: #cbd5e1;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+.nav-item.active .count-badge { background-color: #0284c7; color: #ffffff; }
+
+.sidebar-footer {
+  padding: 18px 24px;
+  border-top: 1px solid #1e293b;
+  background-color: #0b0f19;
+  font-size: 12px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
   gap: 10px;
 }
-.site-title { font-weight: 700; font-size: 1.2rem; text-decoration: none; color: #1a1a1a; }
-.site-desc { color: #888; font-size: 0.85rem; }
+.status-dot { width: 8px; height: 8px; background-color: #10b981; border-radius: 50%; box-shadow: 0 0 8px #10b981; }
 
-.wiki-layout {
+/* ---------- Main content ---------- */
+.main-content { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; background-color: #f8fafc; }
+.main-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 20px 40px;
   display: flex;
-  min-height: calc(100vh - 54px);
-}
-#sidebar {
-  width: 260px;
-  flex-shrink: 0;
-  border-right: 1px solid #e2e2e2;
-  background: #fff;
-  padding: 16px 12px;
-  overflow-y: auto;
-}
-.wiki-logo { font-size: 1rem; margin: 0 0 12px 4px; color: #555; }
-.category summary {
-  cursor: pointer;
-  font-weight: 600;
-  padding: 8px 6px;
-  border-radius: 6px;
-}
-.category summary:hover { background: #f0f0f0; }
-.category ul { list-style: none; margin: 0; padding-left: 14px; }
-.sub-link {
-  display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding: 6px 8px;
-  border-radius: 6px;
-  color: #333;
-  text-decoration: none;
-  font-size: 0.92rem;
+  flex-shrink: 0;
+  gap: 20px;
+  flex-wrap: wrap;
 }
-.sub-link:hover, .sub-link.active { background: #eef2ff; color: #3b4ed8; }
-.count { color: #999; font-size: 0.8rem; }
+.header-title-area h2 { font-family: 'Merriweather', serif; font-size: 24px; color: #0f172a; font-weight: 700; }
+.header-title-area p { font-size: 14px; color: #64748b; margin-top: 4px; }
+.header-metrics { display: flex; gap: 16px; }
+.metric-pill { background-color: #f1f5f9; border: 1px solid #e2e8f0; padding: 8px 16px; border-radius: 8px; font-size: 13px; color: #475569; font-weight: 600; white-space: nowrap; }
+.metric-pill strong { color: #0284c7; }
 
-#content { flex: 1; padding: 24px 32px; max-width: 900px; }
-.placeholder { color: #999; }
+.content-scrollable { flex: 1; padding: 40px; overflow-y: auto; }
 
-.entry-card {
-  border: 1px solid #e6e6e6;
-  border-radius: 10px;
-  padding: 18px 20px;
-  margin-bottom: 16px;
-  background: #fff;
+.empty-state { text-align: center; padding: 80px 20px; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; color: #64748b; }
+.empty-state i { font-size: 48px; color: #cbd5e1; margin-bottom: 16px; display: block; }
+.empty-state h3 { font-size: 17px; color: #334155; margin-bottom: 8px; }
+
+/* ---------- Entry cards ---------- */
+.cards-container { display: grid; gap: 24px; animation: fadeIn 0.3s ease-in-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+.item-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.2s ease;
 }
-.entry-card h3 { margin: 0 0 6px 0; font-size: 1.1rem; }
-.entry-summary { color: #555; margin-bottom: 10px; }
-.entry-body { white-space: pre-wrap; line-height: 1.6; font-size: 0.95rem; }
-.entry-meta { margin-top: 12px; font-size: 0.8rem; color: #999; display: flex; flex-wrap: wrap; gap: 10px; }
-.tag { background: #f2f2f2; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; color: #555; }
-.sources a { color: #3b4ed8; font-size: 0.8rem; }
+.item-card:hover { border-color: #cbd5e1; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); }
 
-@media (max-width: 720px) {
-  .wiki-layout { flex-direction: column; }
-  #sidebar { width: 100%; border-right: none; border-bottom: 1px solid #e2e2e2; }
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 6px; }
+.card-title { font-family: 'Merriweather', serif; font-size: 20px; font-weight: 700; color: #0f172a; }
+.updated-tag {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  background-color: #f0f9ff;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
+}
+
+.card-summary { font-size: 14px; color: #64748b; font-weight: 600; margin-bottom: 14px; }
+.card-description { font-size: 15px; line-height: 1.7; color: #334155; margin-bottom: 16px; white-space: pre-line; }
+
+.tags-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.tag-chip { background-color: #f1f5f9; color: #475569; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; border: 1px solid #e2e8f0; }
+
+.meta-box {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px 20px;
+  font-size: 13px;
+  color: #64748b;
+  display: grid;
+  gap: 8px;
+}
+.meta-box a { color: #0284c7; text-decoration: none; }
+.meta-box a:hover { text-decoration: underline; }
+.meta-row strong { color: #334155; margin-right: 6px; }
+
+@media (max-width: 860px) {
+  body { height: auto; overflow: auto; }
+  .portal-wrapper { flex-direction: column; height: auto; }
+  .sidebar { width: 100%; height: auto; }
+  .main-content { height: auto; overflow: visible; }
+  .content-scrollable { overflow: visible; }
 }

@@ -1,6 +1,6 @@
 {
-  "note": "이 파일은 선택사항입니다. 없어도 _data 안의 각 json 파일명이 그대로 카테고리명으로 표시됩니다.",
+  "note": "이 파일은 선택사항입니다. 없어도 _data 안의 각 json 파일명이 그대로 카테고리명으로 표시됩니다. icon은 Font Awesome solid 아이콘 이름(fa-로 시작)을 사용합니다.",
   "order": {
-    "ip": { "label": "IP", "icon": "📄", "order": 1 }
+    "ip": { "label": "IP", "icon": "fa-file-shield", "order": 1 }
   }
 }
