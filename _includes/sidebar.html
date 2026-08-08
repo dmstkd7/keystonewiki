@@ -1,0 +1,24 @@
+<h1 class="wiki-logo">KeystoneWiki</h1>
+<nav class="category-tree">
+{% for file in site.data %}
+  {% assign key = file[0] %}
+  {% assign cat = file[1] %}
+  {% comment %} _meta.json 등 카테고리가 아닌 데이터 파일은 건너뜀 {% endcomment %}
+  {% if key == "_meta" or cat.category == nil %}
+    {% continue %}
+  {% endif %}
+  <details class="category" open>
+    <summary>{{ cat.category }}</summary>
+    <ul>
+    {% for sub in cat.subcategories %}
+      {% assign count = sub[1].size %}
+      <li>
+        <a href="#" class="sub-link" data-cat="{{ key }}" data-sub="{{ sub[0] }}">
+          {{ sub[0] }} <span class="count">{{ count }}</span>
+        </a>
+      </li>
+    {% endfor %}
+    </ul>
+  </details>
+{% endfor %}
+</nav>

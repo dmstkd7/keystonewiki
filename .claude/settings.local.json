@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh auth *)",
+      "Bash(gh api *)",
+      "Bash(git --version)",
+      "Bash(git config *)",
+      "Bash(rm -rf \"{_data,_layouts,_includes,assets\" && ls -la)",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  }
+}

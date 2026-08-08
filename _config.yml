@@ -1,0 +1,18 @@
+title: KeystoneWiki
+description: "팀이 찾은 정보를 AI가 자동으로 분류·정리하는 사내 위키"
+baseurl: ""
+url: ""
+
+markdown: kramdown
+plugins:
+  - jekyll-relative-links
+
+# _data/*.json 파일 하나 = 대분류 하나.
+# 새 카테고리를 추가하려면 _data 에 새 json 파일만 넣으면 됩니다.
+# 코드/레이아웃 수정 불필요.
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "wiki"
