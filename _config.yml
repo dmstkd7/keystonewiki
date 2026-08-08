@@ -1,7 +1,7 @@
 title: KeystoneWiki
 description: "팀이 찾은 정보를 AI가 자동으로 분류·정리하는 사내 위키"
-baseurl: ""
-url: ""
+baseurl: "/keystonewiki"
+url: "https://dmstkd7.github.io"
 
 markdown: kramdown
 plugins:
